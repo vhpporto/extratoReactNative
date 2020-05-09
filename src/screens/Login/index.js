@@ -10,7 +10,7 @@ import {
   TextButtonRegister,
 } from './styles';
 import api from '../../services/api';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {loggin} from '../../actions/user';
 
 const Login = ({navigation}) => {
@@ -29,7 +29,6 @@ const Login = ({navigation}) => {
       password: user.password,
     });
     const [{erro, resultado, id, nome, dataCadastro}] = response.data;
-
     if (erro === 0) {
       dispatch(loggin({...user, id, nome, dataCadastro}));
       navigation.navigate('Home');
@@ -63,9 +62,4 @@ const Login = ({navigation}) => {
   );
 };
 
-const mapStateToProps = ({user}) => {
-  console.log(user);
-  return {user};
-};
-
-export default connect(mapStateToProps)(Login);
+export default Login;

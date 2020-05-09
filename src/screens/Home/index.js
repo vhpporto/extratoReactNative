@@ -1,17 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 // import { Container } from './styles';
 
 const Home = () => {
+  const userInfo = useSelector(state => state.user);
+
+  useEffect(() => {
+    console.log(userInfo);
+  });
   return <View />;
 };
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {state};
-};
-export default connect(
-  mapStateToProps,
-  null,
-)(Home);
+export default Home;
