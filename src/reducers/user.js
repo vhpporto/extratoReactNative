@@ -6,13 +6,12 @@ const INITIAL_STATE = {
   dataCadastro: null,
 };
 
-const user = (state = INITIAL_STATE, action) => {
+const userLogin = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_LOGGED_IN:
       return {
         ...state,
         id: action.payload.id,
-        token: action.payload.token,
         nome: action.payload.nome,
         dataCadastro: action.payload.dataCadastro,
       };
@@ -29,4 +28,4 @@ const user = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default user;
+export default userLogin;

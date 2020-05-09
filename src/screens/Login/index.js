@@ -10,32 +10,48 @@ import {
   TextButtonRegister,
 } from './styles';
 import api from '../../services/api';
+import {connect, useDispatch, useSelector} from 'react-redux';
+import {loggin} from '../../actions/user';
 
 const Login = ({navigation}) => {
-  const [user, setUser] = useState(null);
-  const [password, setPassword] = useState(null);
+  const dispatch = useDispatch();
 
-  async function login() {
+  const [user, setUser] = useState({
+    id: null,
+    dataCadastro: null,
+    nome: null,
+    password: null,
+  });
+
+  const login = async () => {
     const response = await api.post('/login', {
-      user: user,
-      password: password,
+      user: user.nome,
+      password: user.password,
     });
-    const [{erro, resultado}] = response.data;
+    const [{erro, resultado, id, nome, dataCadastro}] = response.data;
+
     if (erro === 0) {
+      dispatch(loggin({...user, id, nome, dataCadastro}));
       navigation.navigate('Home');
     } else {
       Alert.alert(`${resultado}`, '');
     }
-  }
+  };
 
   return (
     <Container>
-      <InputUser placeholder="Usuário" onChangeText={user => setUser(user)} />
+      <InputUser
+        placeholder="Usuário"
+        onChangeText={userName => setUser({...user, nome: userName})}
+      />
       <InputPassword
         placeholder="Senha"
-        onChangeText={password => setPassword(password)}
+        onChangeText={password => setUser({...user, password: password})}
       />
       <ButtonLogin onPress={login}>
+        <TextButton>Acessar</TextButton>
+      </ButtonLogin>
+      <ButtonLogin onPress={() => console.log(user)}>
         <TextButton>Acessar</TextButton>
       </ButtonLogin>
       <ButtonRegister>
@@ -47,4 +63,9 @@ const Login = ({navigation}) => {
   );
 };
 
-export default Login;
+const mapStateToProps = ({user}) => {
+  console.log(user);
+  return {user};
+};
+
+export default connect(mapStateToProps)(Login);
