@@ -7,7 +7,7 @@ export const Container = styled.View`
   margin-top: ${Dimensions.get('window').height / 3}px;
 `;
 
-export const InputName = styled.TextInput`
+export const InputUser = styled.TextInput`
   margin: 10px;
   height: 40px;
   width: 80%;

@@ -32,7 +32,7 @@ const Login = ({navigation}) => {
     <Container>
       <InputUser placeholder="Usuário" onChangeText={user => setUser(user)} />
       <InputPassword
-        placeholder="Password"
+        placeholder="Senha"
         onChangeText={password => setPassword(password)}
       />
       <ButtonLogin onPress={login}>
