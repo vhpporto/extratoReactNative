@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 export const Container = styled.View`
   flex: 1;
-  align-items: center;
 `;
 export const ContainerSaldo = styled.View`
   flex: 1;
@@ -80,4 +79,58 @@ export const TextMes = styled.Text`
   color: #fff;
   margin-bottom: 6px;
   margin-top: 10px;
+`;
+
+export const ContainerMes = styled.View`
+  width: 95%;
+  align-self: center;
+  padding-left: 10px;
+  padding: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-direction: row;
+  border-bottom-width: 0.5px;
+  border-bottom-color: #ddd;
+`;
+
+export const ContainerIcon = styled.View`
+  flex: 2;
+
+  background-color: blue;
+`;
+
+export const IconContainer = styled.View`
+  flex: 1;
+  width: 100%;
+  /* background-color: yellow; */
+`;
+
+export const DescContainer = styled.View`
+  flex: 6;
+  /* width: 100%; */
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const Description = styled.Text`
+  color: #444;
+  font-weight: 500;
+  font-size: 17px;
+  margin-bottom: 5px;
+`;
+
+export const Date = styled.Text`
+  color: #999;
+  font-weight: 500;
+`;
+
+export const ValueContainer = styled.View`
+  flex: 3;
+  align-items: flex-end;
+  padding-right: 5px;
+`;
+
+export const Value = styled.Text`
+  color: #333;
+  font-weight: 500;
 `;

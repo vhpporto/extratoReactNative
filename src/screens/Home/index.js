@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {StatusBar, TouchableWithoutFeedback} from 'react-native';
+import {
+  StatusBar,
+  TouchableWithoutFeedback,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import {useSelector} from 'react-redux';
 import api from '../../services/api';
 import LinearGradient from 'react-native-linear-gradient';
@@ -18,6 +23,13 @@ import {
   ContainerButtons,
   ButtonFilter,
   TextMes,
+  ContainerMes,
+  IconContainer,
+  DescContainer,
+  Description,
+  Date,
+  ValueContainer,
+  Value,
 } from './styles';
 
 const diaAtual = moment().format('LLLL');
@@ -36,8 +48,8 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     Icon.loadFont();
-    console.log(userInfo);
     getExtrato();
+    console.log(extrato);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -66,7 +78,6 @@ const Home = ({navigation}) => {
     } else {
       const indexSaldo = data.length - 1;
       const saldo = data[indexSaldo].Saldo;
-      console.log(data);
       setExtrato(data);
       setFiltroExtrato(data);
       setSaldoExtrato(
@@ -117,6 +128,35 @@ const Home = ({navigation}) => {
           </TouchableWithoutFeedback>
         </ButtonFilter>
       </ContainerButtons>
+
+      <FlatList
+        data={extrato}
+        keyExtractor={(item, index) => String(index)}
+        renderItem={({item}) => {
+          return (
+            <ContainerMes>
+              <IconContainer>
+                <Icon name="plus" size={30} color="#50Aeee" />
+              </IconContainer>
+              <DescContainer>
+                <TouchableOpacity>
+                  <Description>{item.Descricao}</Description>
+                  <Date>{moment(item.Data_Lancamento).format('L')}</Date>
+                </TouchableOpacity>
+              </DescContainer>
+              <ValueContainer>
+                <Value>
+                  R${' '}
+                  {parseFloat(item.Valor.toFixed(2)).toLocaleString('pt-BR', {
+                    currency: 'BRL',
+                    minimumFractionDigits: 2,
+                  })}
+                </Value>
+              </ValueContainer>
+            </ContainerMes>
+          );
+        }}
+      />
     </Container>
   );
 };
