@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-
+import {Dimensions} from 'react-native';
 export const Container = styled.View`
   flex: 1;
   align-items: center;
@@ -28,11 +28,15 @@ export const TextExtrato = styled.Text`
   font-size: 27px;
 `;
 export const ButtonAdd = styled.TouchableOpacity`
+  position: absolute;
   height: 65px;
   width: 65px;
-  border-radius: 30.25px;
+  border-radius: 32.25px;
   background-color: #413d4f;
   justify-content: center;
   align-self: flex-end;
   align-items: center;
+  left: ${Dimensions.get('window').width / 1.3}px;
+  right: 89px;
+  bottom: 40px;
 `;
