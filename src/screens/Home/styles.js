@@ -1,39 +1,38 @@
 import styled from 'styled-components/native';
-import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  margin-top: ${Dimensions.get('window').height / 3}px;
+`;
+export const ContainerSaldo = styled.View`
+  flex: 1;
+  margin-top: 30px;
 `;
 
-export const InputName = styled.TextInput`
-  height: 40px;
-  width: 80%;
-  border-radius: 4px;
-  padding-left: 20px;
-  border-width: 0.5px;
+export const ContainerExtratoButtonAdd = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  shadow-color: #000;
+  shadow-offset: {
+    width: 0px;
+    height: 2px;
+  }
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+  elevation: 5;
 `;
 
-export const InputPassword = styled.TextInput`
-  height: 40px;
-  width: 80%;
-  border-radius: 4px;
-  padding-left: 20px;
-  border-width: 0.5px;
-`;
-
-export const ButtonRegister = styled.TouchableOpacity`
-  margin-top: 10px;
-  height: 40px;
-  width: 80%;
-  border-radius: 4px;
-  background-color: #7200c1;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const TextButton = styled.Text`
+export const TextExtrato = styled.Text`
   color: #fff;
-  font-weight: 500;
+  font-weight: bold;
+  font-size: 27px;
+`;
+export const ButtonAdd = styled.TouchableOpacity`
+  height: 65px;
+  width: 65px;
+  border-radius: 30.25px;
+  background-color: #413d4f;
+  justify-content: center;
+  align-self: flex-end;
+  align-items: center;
 `;

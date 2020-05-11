@@ -41,16 +41,13 @@ const Login = ({navigation}) => {
     <Container>
       <InputUser
         placeholder="Usuário"
-        onChangeText={userName => setUser({...user, nome: userName})}
+        onChangeText={nome => setUser({...user, nome})}
       />
       <InputPassword
         placeholder="Senha"
-        onChangeText={password => setUser({...user, password: password})}
+        onChangeText={password => setUser({...user, password})}
       />
       <ButtonLogin onPress={login}>
-        <TextButton>Acessar</TextButton>
-      </ButtonLogin>
-      <ButtonLogin onPress={() => console.log(user)}>
         <TextButton>Acessar</TextButton>
       </ButtonLogin>
       <ButtonRegister>
