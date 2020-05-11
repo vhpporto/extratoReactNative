@@ -40,3 +40,44 @@ export const ButtonAdd = styled.TouchableOpacity`
   right: 89px;
   bottom: 40px;
 `;
+
+export const TextSaldo = styled.Text`
+  color: #a7a7a7;
+  margin-top: 20px;
+  font-weight: bold;
+`;
+
+export const TextSaldoValor = styled.Text`
+  color: #f5f5f5;
+  font-weight: 300;
+  font-size: 33px;
+`;
+
+export const TextDate = styled(TextSaldo)`
+  color: #fff;
+  font-weight: 500;
+`;
+
+export const ContainerButtons = styled.View`
+  background-color: #191825;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const ButtonFilter = styled.View`
+  flex: 1;
+  align-items: center;
+  ${props =>
+    props.press && {
+      borderBottomWidth: 4,
+      borderBottomColor: '#50Aeee',
+    }}
+`;
+
+export const TextMes = styled.Text`
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 6px;
+  margin-top: 10px;
+`;

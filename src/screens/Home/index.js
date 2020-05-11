@@ -1,16 +1,27 @@
 import React, {useState, useEffect} from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, TouchableWithoutFeedback} from 'react-native';
 import {useSelector} from 'react-redux';
 import api from '../../services/api';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import 'moment/locale/pt-br';
+import moment from 'moment';
 import {
   Container,
   ContainerSaldo,
   ContainerExtratoButtonAdd,
   TextExtrato,
   ButtonAdd,
+  TextSaldo,
+  TextSaldoValor,
+  TextDate,
+  ContainerButtons,
+  ButtonFilter,
+  TextMes,
 } from './styles';
+
+const diaAtual = moment().format('LLLL');
+const diaAtualFormatado = diaAtual.split('às');
 
 const Home = ({navigation}) => {
   const userInfo = useSelector(state => state.user);
@@ -18,6 +29,10 @@ const Home = ({navigation}) => {
   const [extrato, setExtrato] = useState(null);
   const [saldoExtrato, setSaldoExtrato] = useState('0.00');
   const [filtroExtrato, setFiltroExtrato] = useState([]);
+  const [buttonMes, setButtonMes] = useState(true);
+  const [buttonPeriodo, setButtonPeriodo] = useState(false);
+  const [extratoMes, setExtratoMes] = useState(true);
+  const [extratoPeriodo, setExtratoPeriodo] = useState(false);
 
   useEffect(() => {
     Icon.loadFont();
@@ -25,6 +40,20 @@ const Home = ({navigation}) => {
     getExtrato();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function handlePressMes() {
+    setButtonMes(true);
+    setButtonPeriodo(false);
+    setExtrato(true);
+    setExtratoPeriodo(false);
+  }
+
+  function handlePressPeriodo() {
+    setButtonMes(false);
+    setButtonPeriodo(true);
+    setExtratoMes(false);
+    setExtratoPeriodo(true);
+  }
 
   async function getExtrato() {
     const response = await api.get('/extrato');
@@ -70,8 +99,24 @@ const Home = ({navigation}) => {
         style={{padding: 30, height: 280, width: '100%'}}>
         <ContainerSaldo>
           <TextExtrato>Extrato</TextExtrato>
+          <TextSaldo>MEU SALDO</TextSaldo>
+          <TextSaldoValor>R$ {saldoExtrato}</TextSaldoValor>
         </ContainerSaldo>
+        <TextDate>{diaAtualFormatado[0]}</TextDate>
       </LinearGradient>
+
+      <ContainerButtons>
+        <ButtonFilter press={buttonMes}>
+          <TouchableWithoutFeedback onPress={() => handlePressMes()}>
+            <TextMes>Este mês</TextMes>
+          </TouchableWithoutFeedback>
+        </ButtonFilter>
+        <ButtonFilter press={buttonPeriodo}>
+          <TouchableWithoutFeedback onPress={() => handlePressPeriodo()}>
+            <TextMes>Escolher período</TextMes>
+          </TouchableWithoutFeedback>
+        </ButtonFilter>
+      </ContainerButtons>
     </Container>
   );
 };
