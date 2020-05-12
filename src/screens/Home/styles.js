@@ -27,7 +27,7 @@ export const TextExtrato = styled.Text`
   font-size: 27px;
 `;
 export const ButtonAdd = styled.TouchableOpacity`
-  position: absolute;
+  /* position: absolute; */
   height: 65px;
   width: 65px;
   border-radius: 32.25px;
@@ -36,7 +36,8 @@ export const ButtonAdd = styled.TouchableOpacity`
   align-self: flex-end;
   align-items: center;
   left: ${Dimensions.get('window').width / 1.3}px;
-  right: 89px;
+  right: 0px;
+  left: -20px;
   bottom: 40px;
 `;
 

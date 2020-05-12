@@ -10,18 +10,20 @@ export const Container = styled.View`
 export const InputUser = styled.TextInput`
   height: 40px;
   margin: 10px;
+  border-color: #999;
   width: 80%;
   border-radius: 4px;
   padding-left: 20px;
-  border-width: 0.5px;
+  border-width: 0.3px;
 `;
 
 export const InputPassword = styled.TextInput`
   height: 40px;
   width: 80%;
+  border-color: #999;
   border-radius: 4px;
   padding-left: 20px;
-  border-width: 0.5px;
+  border-width: 0.3px;
 `;
 
 export const ButtonLogin = styled.TouchableOpacity`

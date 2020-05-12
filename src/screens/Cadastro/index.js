@@ -36,6 +36,7 @@ const Cadastro = ({navigation}) => {
       <InputUser placeholder="Usuário" onChangeText={user => setUser(user)} />
       <InputPassword
         placeholder="Password"
+        secureTextEntry={true}
         onChangeText={password => setPassword(password)}
       />
       <ButtonRegister onPress={registro}>

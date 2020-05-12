@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Login from './screens/Login';
 import Home from './screens/Home';
 import Cadastro from './screens/Cadastro';
+import Lancamento from './screens/Lancamento';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ function Routes() {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Cadastro" component={Cadastro} />
+        <Stack.Screen name="Lancamento" component={Lancamento} />
       </Stack.Navigator>
     </NavigationContainer>
   );

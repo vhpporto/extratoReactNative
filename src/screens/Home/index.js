@@ -9,8 +9,8 @@ import {useSelector} from 'react-redux';
 import api from '../../services/api';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import 'moment/locale/pt-br';
 import moment from 'moment';
+import 'moment/locale/pt-br';
 import {
   Container,
   ContainerSaldo,
@@ -95,14 +95,7 @@ const Home = ({navigation}) => {
   return (
     <Container>
       <StatusBar barStyle="light-content" />
-      <ButtonAdd
-        animation="pulse"
-        useNativeDriver
-        iterationCount="infinite"
-        duration={800}
-        onPress={() => navigation.navigate('Lancamento')}>
-        <Icon name="plus" size={35} color="#FFF" />
-      </ButtonAdd>
+
       <LinearGradient
         start={{x: 1, y: 0}}
         end={{x: 1, y: 1}}
@@ -157,6 +150,14 @@ const Home = ({navigation}) => {
           );
         }}
       />
+      <ButtonAdd
+        // animation="pulse"
+        // useNativeDriver
+        // iterationCount="infinite"
+        // duration={800}
+        onPress={() => navigation.navigate('Lancamento')}>
+        <Icon name="plus" size={35} color="#FFF" />
+      </ButtonAdd>
     </Container>
   );
 };
