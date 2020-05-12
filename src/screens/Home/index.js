@@ -49,7 +49,7 @@ const Home = ({navigation}) => {
   useEffect(() => {
     Icon.loadFont();
     getExtrato();
-    console.log(extrato);
+    console.log(userInfo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -68,7 +68,9 @@ const Home = ({navigation}) => {
   }
 
   async function getExtrato() {
-    const response = await api.get('/extrato');
+    const response = await api.post('/extrato', {
+      id: 4,
+    });
     const {data} = response;
 
     if (data.length < 1) {
