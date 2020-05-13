@@ -20,8 +20,8 @@ import categorias from '../../components/Categoria';
 import Icon from 'react-native-vector-icons/Ionicons';
 import api from '../../services/api';
 import moment from 'moment';
+import {connect} from 'react-redux';
 import 'moment/locale/pt-br';
-
 import {
   Container,
   KeyboardView,
@@ -40,28 +40,28 @@ import {
   TextButtonSave,
 } from './styles';
 
+Icon.loadFont();
+
 const DismissKeyboard = ({children}) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     {children}
   </TouchableWithoutFeedback>
 );
 
-export default class index extends Component {
+class index extends Component {
   constructor(props) {
     super(props);
     this.inputRefs = {};
     this.state = {
-      id: this.props.navigation.getParam('id') || null,
-      tipoMovimentacao: this.props.navigation.getParam('entrada'),
-      saida: this.props.navigation.getParam('entrada') == 0 ? true : false,
-      entrada: this.props.navigation.getParam('entrada') == 0 ? false : true,
-      data:
-        moment(this.props.navigation.getParam('data')).format('L') ||
-        moment().format('L'),
+      id: null,
+      tipoMovimentacao: null,
+      saida: null,
+      entrada: null,
+      data: moment().format('L'),
       calendarVisible: false,
-      tipoCategoria: this.props.navigation.getParam('categoria') || 1,
-      descricao: this.props.navigation.getParam('descricao') || null,
-      valor: this.props.navigation.getParam('valor') || null,
+      tipoCategoria: 1,
+      descricao: null,
+      valor: null,
       categorias: categorias,
       showPicker: false,
       favSport: null,
@@ -82,6 +82,7 @@ export default class index extends Component {
   insereMovimentacao = async () => {
     const dataFormatada = this.state.data.split('/');
     const response = await api.post('/novamovimentacao', {
+      id: this.props.id,
       valor: this.state.valor,
       descricao: JSON.stringify(this.state.descricao),
       data: dataFormatada[2] + '-' + dataFormatada[1] + '-' + dataFormatada[0],
@@ -102,7 +103,7 @@ export default class index extends Component {
       Alert.alert(`${resultado}! Deseja lançar uma nova movimentação ?`, '', [
         {
           text: 'Não',
-          onPress: () => this.props.navigation.navigate('Extrato'),
+          onPress: () => this.props.navigation.navigate('Home'),
         },
         {text: 'Sim'},
       ]);
@@ -171,7 +172,7 @@ export default class index extends Component {
             </CheckBoxContainer>
 
             <FormContainer>
-              <RNPickerSelect
+              {/* <RNPickerSelect
                 placeholder={{
                   label: 'Categoria',
                   value: null,
@@ -193,7 +194,7 @@ export default class index extends Component {
                 ref={el => {
                   this.inputRefs.picker2 = el;
                 }}
-              />
+              /> */}
 
               <InputDescription
                 value={this.state.descricao}
@@ -254,6 +255,17 @@ export default class index extends Component {
     );
   }
 }
+
+const mapStateToProps = ({user}) => {
+  return {
+    id: user.id,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null,
+)(index);
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {

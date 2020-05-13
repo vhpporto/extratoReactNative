@@ -5,10 +5,11 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import api from '../../services/api';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import IconCategory from '../../components/Icons';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import {
@@ -31,7 +32,7 @@ import {
   ValueContainer,
   Value,
 } from './styles';
-
+Icon.loadFont();
 const diaAtual = moment().format('LLLL');
 const diaAtualFormatado = diaAtual.split('às');
 
@@ -47,9 +48,8 @@ const Home = ({navigation}) => {
   const [extratoPeriodo, setExtratoPeriodo] = useState(false);
 
   useEffect(() => {
-    Icon.loadFont();
     getExtrato();
-    console.log(userInfo);
+    console.log(userInfo.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -69,7 +69,7 @@ const Home = ({navigation}) => {
 
   async function getExtrato() {
     const response = await api.post('/extrato', {
-      id: 4,
+      id: userInfo.id,
     });
     const {data} = response;
 
@@ -131,7 +131,7 @@ const Home = ({navigation}) => {
           return (
             <ContainerMes>
               <IconContainer>
-                <Icon name="plus" size={30} color="#50Aeee" />
+                <IconCategory name={item.Nome} />
               </IconContainer>
               <DescContainer>
                 <TouchableOpacity>

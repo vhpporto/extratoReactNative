@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* extratoMoboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* extratoMoboTests.m */; };
 		87CCE83627A058591EE3A0F1 /* libPods-extratoMobo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCFB76CFEF33FF1976D8C7E /* libPods-extratoMobo-tvOS.a */; };
+		891C2D86246B7D550047BE96 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 891C2D85246B7D550047BE96 /* Fonts */; };
 		C58A4DD3376B8C60F63B70DB /* libPods-extratoMobo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1964B311A413C949DE61592A /* libPods-extratoMobo-tvOSTests.a */; };
 		CFC1922FB674A6C3F4ABB33E /* libPods-extratoMobo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B31437E1C86EADC4FA0C6A /* libPods-extratoMobo.a */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		68F58D187537DCAA73AD763D /* Pods-extratoMobo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-extratoMobo.debug.xcconfig"; path = "Target Support Files/Pods-extratoMobo/Pods-extratoMobo.debug.xcconfig"; sourceTree = "<group>"; };
 		7B004A4F638089A5B4147B43 /* Pods-extratoMobo-extratoMoboTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-extratoMobo-extratoMoboTests.debug.xcconfig"; path = "Target Support Files/Pods-extratoMobo-extratoMoboTests/Pods-extratoMobo-extratoMoboTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7F4F59EC83699B8C14FCD544 /* Pods-extratoMobo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-extratoMobo-tvOS.release.xcconfig"; path = "Target Support Files/Pods-extratoMobo-tvOS/Pods-extratoMobo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		891C2D85246B7D550047BE96 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		ADA7DB63F39F94C6B83C1E24 /* libPods-extratoMobo-extratoMoboTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-extratoMobo-extratoMoboTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -161,7 +163,6 @@
 				2B80167BC21D1BD6130553EC /* Pods-extratoMobo-tvOSTests.debug.xcconfig */,
 				25EC69B3F174869CFEDA05C0 /* Pods-extratoMobo-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -175,6 +176,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				891C2D85246B7D550047BE96 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* extratoMobo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* extratoMoboTests */,
@@ -340,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891C2D86246B7D550047BE96 /* Fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);

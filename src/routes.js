@@ -26,7 +26,11 @@ function Routes() {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Cadastro" component={Cadastro} />
-        <Stack.Screen name="Lancamento" component={Lancamento} />
+        <Stack.Screen
+          name="Lancamento"
+          component={Lancamento}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
