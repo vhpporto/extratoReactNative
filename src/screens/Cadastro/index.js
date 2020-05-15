@@ -18,12 +18,13 @@ const Cadastro = ({navigation}) => {
     id: null,
     dataCadastro: null,
     nome: null,
+    email: null,
     password: null,
   });
 
   async function login() {
     const response = await api.post('/login', {
-      user: user.nome,
+      email: user.email,
       password: user.password,
     });
     const [{erro, resultado, id, nome}] = response.data;
@@ -37,7 +38,8 @@ const Cadastro = ({navigation}) => {
 
   async function registro() {
     const response = await api.post('/registro', {
-      user: user.nome,
+      nome: user.nome,
+      email: user.email,
       password: user.password,
     });
     const [{erro, resultado}] = response.data;
@@ -56,8 +58,12 @@ const Cadastro = ({navigation}) => {
   return (
     <Container>
       <InputUser
-        placeholder="Usuário"
+        placeholder="Nome"
         onChangeText={nome => setUser({...user, nome})}
+      />
+      <InputUser
+        placeholder="Email"
+        onChangeText={email => setUser({...user, email})}
       />
       <InputPassword
         placeholder="Password"

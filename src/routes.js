@@ -8,6 +8,7 @@ import Login from './screens/Login';
 import Home from './screens/Home';
 import Cadastro from './screens/Cadastro';
 import Lancamento from './screens/Lancamento';
+import Senha from './screens/Senha';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,11 @@ function Routes() {
         <Stack.Screen
           name="Lancamento"
           component={Lancamento}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Senha"
+          component={Senha}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

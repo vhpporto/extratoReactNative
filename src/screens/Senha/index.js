@@ -20,13 +20,13 @@ const Login = ({navigation}) => {
   const [user, setUser] = useState({
     id: null,
     dataCadastro: null,
-    email: null,
+    nome: null,
     password: null,
   });
 
   const login = async () => {
     const response = await api.post('/login', {
-      email: user.email,
+      user: user.nome,
       password: user.password,
     });
     const [{erro, resultado, id, nome, dataCadastro}] = response.data;
@@ -42,30 +42,12 @@ const Login = ({navigation}) => {
     <Container>
       <InputUser
         placeholder="Email"
-        autoCapitalize="none"
-        onChangeText={email => setUser({...user, email})}
+        onChangeText={nome => setUser({...user, nome})}
       />
-      <InputPassword
-        placeholder="Senha"
-        onChangeText={password => setUser({...user, password})}
-      />
+
       <ButtonLogin onPress={login}>
-        <TextButton>Acessar</TextButton>
+        <TextButton>Enviar</TextButton>
       </ButtonLogin>
-
-      <ButtonRegister>
-        <TextButtonRegister onPress={() => navigation.navigate('Senha')}>
-          Esqueceu a senha ?
-        </TextButtonRegister>
-      </ButtonRegister>
-
-      <ContainerRegistro>
-        <ButtonRegister>
-          <TextButtonRegister onPress={() => navigation.navigate('Cadastro')}>
-            Criar uma conta
-          </TextButtonRegister>
-        </ButtonRegister>
-      </ContainerRegistro>
     </Container>
   );
 };
