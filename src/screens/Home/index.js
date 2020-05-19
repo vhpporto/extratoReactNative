@@ -31,6 +31,8 @@ import {
   Date,
   ValueContainer,
   Value,
+  ContainerEmpty,
+  TextSemRegistro,
 } from './styles';
 Icon.loadFont();
 const diaAtual = moment().format('LLLL');
@@ -56,15 +58,11 @@ const Home = ({navigation}) => {
   function handlePressMes() {
     setButtonMes(true);
     setButtonPeriodo(false);
-    setExtrato(true);
-    setExtratoPeriodo(false);
   }
 
   function handlePressPeriodo() {
     setButtonMes(false);
     setButtonPeriodo(true);
-    setExtratoMes(false);
-    setExtratoPeriodo(true);
   }
 
   async function getExtrato() {

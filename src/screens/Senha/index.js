@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert} from 'react-native';
+import {Alert, Button, View, Text} from 'react-native';
 import {
   Container,
   InputUser,
@@ -9,10 +9,13 @@ import {
   ButtonRegister,
   TextButtonRegister,
   ContainerRegistro,
+  ContainerModal,
+  InputNumber,
+  TextCodigo,
 } from './styles';
 import api from '../../services/api';
+import Modal from 'react-native-modal';
 import {useDispatch} from 'react-redux';
-import {loggin} from '../../actions/user';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -20,19 +23,19 @@ const Login = ({navigation}) => {
   const [user, setUser] = useState({
     id: null,
     dataCadastro: null,
-    nome: null,
+    email: null,
     password: null,
   });
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const login = async () => {
-    const response = await api.post('/login', {
-      user: user.nome,
-      password: user.password,
+  const esqueceuSenha = async () => {
+    const response = await api.post('/esqueceusenha', {
+      email: user.email,
     });
-    const [{erro, resultado, id, nome, dataCadastro}] = response.data;
+    const [{resultado, erro}] = response.data;
     if (erro === 0) {
-      dispatch(loggin({...user, id, nome, dataCadastro}));
-      navigation.navigate('Home');
+      setModalVisible(true);
+      // navigation.navigate('Login');
     } else {
       Alert.alert(`${resultado}`, '');
     }
@@ -40,12 +43,36 @@ const Login = ({navigation}) => {
 
   return (
     <Container>
+      <Modal isVisible={modalVisible}>
+        <View
+          style={{
+            backgroundColor: '#FFF',
+            height: 350,
+            borderRadius: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text>Insira o código recebido em seu email</Text>
+          <View style={{flexDirection: 'row', maring: 10, marginTop: 30}}>
+            <InputNumber textAlign={'center'} />
+            <InputNumber textAlign={'center'} />
+            <InputNumber textAlign={'center'} />
+            <InputNumber textAlign={'center'} />
+          </View>
+          <View style={{flexDirection: 'column', marginTop: 40}}>
+            <Button
+              title="Voltar"
+              onPress={() => setModalVisible(!modalVisible)}
+            />
+          </View>
+        </View>
+      </Modal>
       <InputUser
         placeholder="Email"
-        onChangeText={nome => setUser({...user, nome})}
+        onChangeText={email => setUser({...user, email})}
       />
 
-      <ButtonLogin onPress={login}>
+      <ButtonLogin onPress={esqueceuSenha}>
         <TextButton>Enviar</TextButton>
       </ButtonLogin>
     </Container>
