@@ -47,6 +47,7 @@ const Login = ({navigation}) => {
       />
       <InputPassword
         placeholder="Senha"
+        secureTextEntry={true}
         onChangeText={password => setUser({...user, password})}
       />
       <ButtonLogin onPress={login}>

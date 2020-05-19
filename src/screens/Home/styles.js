@@ -38,7 +38,22 @@ export const ButtonAdd = styled.TouchableOpacity`
   left: ${Dimensions.get('window').width / 1.3}px;
   right: 0px;
   left: -20px;
-  bottom: 40px;
+  bottom: 20px;
+`;
+
+export const ButtonMenu = styled.TouchableOpacity`
+  /* position: absolute; */
+  height: 65px;
+  width: 65px;
+  border-radius: 32.25px;
+  background-color: #413d4f;
+  justify-content: center;
+  align-self: flex-end;
+  align-items: center;
+  left: ${Dimensions.get('window').width / 1.3}px;
+  right: 0px;
+  top: 50px;
+  bottom: 0px;
 `;
 
 export const TextSaldo = styled.Text`

@@ -33,6 +33,7 @@ import {
   Value,
   ContainerEmpty,
   TextSemRegistro,
+  ButtonMenu,
 } from './styles';
 Icon.loadFont();
 const diaAtual = moment().format('LLLL');
@@ -50,6 +51,9 @@ const Home = ({navigation}) => {
   const [extratoPeriodo, setExtratoPeriodo] = useState(false);
 
   useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getExtrato();
+    });
     getExtrato();
     console.log(userInfo.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
