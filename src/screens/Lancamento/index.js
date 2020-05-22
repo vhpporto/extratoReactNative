@@ -13,8 +13,8 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import RNPickerSelect from 'react-native-picker-select';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {CheckBox} from 'react-native-elements';
 import categorias from '../../components/Categoria';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -38,6 +38,8 @@ import {
   InputValue,
   PickSelector,
   TextButtonSave,
+  CalendarModal,
+  ContainerModalCalendar,
 } from './styles';
 
 Icon.loadFont();
@@ -172,29 +174,21 @@ class index extends Component {
             </CheckBoxContainer>
 
             <FormContainer>
-              {/* <RNPickerSelect
-                placeholder={{
-                  label: 'Categoria',
-                  value: null,
-                }}
-                items={this.state.categorias}
-                onValueChange={value => {
-                  this.setState({
-                    tipoCategoria: value,
-                  });
-                }}
-                onUpArrow={() => {
-                  this.inputRefs.picker.togglePicker();
-                }}
-                onDownArrow={() => {
-                  this.inputRefs.company.focus();
-                }}
-                style={{...pickerSelectStyles}}
-                value={this.state.tipoCategoria}
-                ref={el => {
-                  this.inputRefs.picker2 = el;
-                }}
-              /> */}
+              <CalendarModal
+                visible={this.state.calendarVisible}
+                transparent={true}
+                animated={true}>
+                <ContainerModalCalendar>
+                  <Calendar
+                    onDayPress={day =>
+                      this.setState({
+                        calendarVisible: !this.state.calendarVisible,
+                        data: moment(day.dateString).format('L'),
+                      })
+                    }
+                  />
+                </ContainerModalCalendar>
+              </CalendarModal>
 
               <InputDescription
                 value={this.state.descricao}
@@ -233,7 +227,7 @@ class index extends Component {
                 <TextButtonSave>Salvar</TextButtonSave>
               </ButtonSave>
 
-              <DateTimePickerModal
+              {/* <DateTimePicker
                 isVisible={this.state.calendarVisible}
                 headerTextIOS="Data de lançamento"
                 locale="pt-BR"
@@ -247,7 +241,7 @@ class index extends Component {
                     Keyboard.dismiss();
                 }}
                 onCancel={() => this.setState({calendarVisible: false})}
-              />
+              /> */}
             </FormContainer>
           </Container>
         </DismissKeyboard>

@@ -109,3 +109,15 @@ export const PickSelector = styled(RNPickerSelect)`
   color: #000;
   border-top-width: 0;
 `;
+
+export const CalendarModal = styled.Modal`
+  justify-content: flex-end;
+  flex: 1;
+`;
+
+export const ContainerModalCalendar = styled.View`
+  flex: 1;
+  height: 500px;
+  width: 100%;
+  justify-content: flex-end;
+`;

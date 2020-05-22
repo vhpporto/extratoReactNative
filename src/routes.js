@@ -52,11 +52,7 @@ function Routes() {
           component={Lancamento}
           options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="Senha"
-          component={Senha}
-          options={{headerShown: false}}
-        />
+        <Stack.Screen name="Senha" component={Senha} />
       </Stack.Navigator>
     </NavigationContainer>
   );
