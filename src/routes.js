@@ -9,6 +9,7 @@ import Home from './screens/Home';
 import Cadastro from './screens/Cadastro';
 import Lancamento from './screens/Lancamento';
 import Senha from './screens/Senha';
+import Perfil from './screens/Perfil';
 
 Icon.loadFont();
 
@@ -19,6 +20,7 @@ function MyTabs() {
   return (
     <Tab.Navigator
       tabBarOptions={{
+        // inactiveBackgroundColor: '#000',
         activeBackgroundColor: '#FFF',
         // style: {marginBottom: -30},
       }}>
@@ -29,6 +31,16 @@ function MyTabs() {
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
             <Icon name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={'Perfil'}
+        component={Perfil}
+        options={{
+          tabBarLabel: 'Perfil',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="account" color={color} size={size} />
           ),
         }}
       />
