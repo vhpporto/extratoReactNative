@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
+  Alert,
   StatusBar,
   TouchableWithoutFeedback,
   FlatList,
@@ -69,6 +70,16 @@ const Home = ({navigation}) => {
     setButtonPeriodo(true);
   }
 
+  async function removeMovimentacao(id, movimentacao) {
+    const response = await api.delete(`/delete/${id}/${movimentacao}`);
+    const [{erro, resultado}] = response.data;
+    if (erro === 0) {
+      getExtrato();
+    } else {
+      Alert.alert(`${resultado}`);
+    }
+  }
+
   async function getExtrato() {
     const response = await api.post('/extrato', {
       id: userInfo.id,
@@ -136,7 +147,21 @@ const Home = ({navigation}) => {
                 <IconCategory name={item.Nome} />
               </IconContainer>
               <DescContainer>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onLongPress={() =>
+                    Alert.alert(
+                      'Excluir movimentação',
+                      `Deseja mesmo excluir "${item.Descricao}"`,
+                      [
+                        {text: 'Não'},
+                        {
+                          text: 'Sim',
+                          onPress: () =>
+                            removeMovimentacao(item.id_Usuario, item.id),
+                        },
+                      ],
+                    )
+                  }>
                   <Description>{item.Descricao}</Description>
                   <Date>{moment(item.Data_Lancamento).format('L')}</Date>
                 </TouchableOpacity>

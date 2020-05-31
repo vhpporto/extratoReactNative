@@ -17,7 +17,11 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeBackgroundColor: '#FFF',
+        // style: {marginBottom: -30},
+      }}>
       <Tab.Screen
         name={'Extrato'}
         component={Home}
