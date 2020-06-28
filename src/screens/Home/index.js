@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   Alert,
   StatusBar,
   TouchableWithoutFeedback,
   FlatList,
+  Text,
+  Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
@@ -13,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import IconCategory from '../../components/Icons';
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import {Modalize} from 'react-native-modalize';
 import {
   Container,
   ContainerSaldo,
@@ -35,12 +38,17 @@ import {
   ContainerEmpty,
   TextSemRegistro,
   ButtonMenu,
+  TitleModal,
+  DescModal,
+  ValueModal,
 } from './styles';
 Icon.loadFont();
 const diaAtual = moment().format('LLLL');
 const diaAtualFormatado = diaAtual.split('às');
 
 const Home = ({navigation}) => {
+  const [item, setItem] = useState({});
+  const modalizeRef = useRef(null);
   const userInfo = useSelector(state => state.user);
   const [loading, setLoading] = useState(true);
   const [extrato, setExtrato] = useState(null);
@@ -50,6 +58,11 @@ const Home = ({navigation}) => {
   const [buttonPeriodo, setButtonPeriodo] = useState(false);
   const [extratoMes, setExtratoMes] = useState(true);
   const [extratoPeriodo, setExtratoPeriodo] = useState(false);
+
+  const onOpen = item => {
+    setItem(item);
+    modalizeRef.current?.open();
+  };
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -148,6 +161,7 @@ const Home = ({navigation}) => {
               </IconContainer>
               <DescContainer>
                 <TouchableOpacity
+                  onPress={() => onOpen(item)}
                   onLongPress={() =>
                     Alert.alert(
                       'Excluir movimentação',
@@ -187,6 +201,26 @@ const Home = ({navigation}) => {
         onPress={() => navigation.navigate('Lancamento')}>
         <Icon name="plus" size={35} color="#FFF" />
       </ButtonAdd>
+      <Modalize
+        modalStyle={
+          {
+            // alignItems: 'center',
+          }
+        }
+        childrenStyle={{
+          width: '90%',
+          marginTop: 30,
+          alignSelf: 'center',
+          padding: 20,
+          // alignItems: 'center',
+        }}
+        ref={modalizeRef}
+        snapPoint={Dimensions.get('window').height / 2}>
+        <TitleModal>Movimentação</TitleModal>
+        <DescModal>{moment(item.Data_Lancamento).format('L')}</DescModal>
+        <DescModal>{item.Descricao}</DescModal>
+        <ValueModal>R$ {item.Valor}</ValueModal>
+      </Modalize>
     </Container>
   );
 };

@@ -30,14 +30,14 @@ export const ButtonAdd = styled.TouchableOpacity`
   /* position: absolute; */
   height: 65px;
   width: 65px;
+  position: absolute;
   border-radius: 32.25px;
   background-color: #413d4f;
   justify-content: center;
   align-self: flex-end;
   align-items: center;
+  right: 100px;
   left: ${Dimensions.get('window').width / 1.3}px;
-  right: 0px;
-  left: -20px;
   bottom: 20px;
 `;
 
@@ -149,4 +149,36 @@ export const ValueContainer = styled.View`
 export const Value = styled.Text`
   color: #333;
   font-weight: 500;
+`;
+
+export const TitleModal = styled.Text`
+  color: #444;
+  font-size: 26px;
+  font-weight: 500;
+  align-self: center;
+`;
+
+export const DescModal = styled.Text`
+  color: #666;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 50px;
+  align-self: center;
+`;
+
+export const ValueModal = styled.Text`
+  font-size: 28px;
+  font-weight: 500;
+  margin-top: 50px;
+  align-self: center;
+  color: ${props => {
+    const number = props.children[1];
+    if (number > 0) {
+      return 'green';
+    } else if (number < 0) {
+      return 'red';
+    } else {
+      return 'black';
+    }
+  }};
 `;
