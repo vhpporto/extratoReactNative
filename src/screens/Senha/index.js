@@ -41,7 +41,7 @@ const Login = ({navigation}) => {
   }
 
   const esqueceuSenha = async () => {
-    const response = await api.post('/esqueceusenha', {
+    const response = await api.post('http://18.228.30.132:3333/esqueceusenha', {
       email: user.email,
     });
     const [{resultado, erro}] = response.data;
