@@ -27,9 +27,9 @@ const Cadastro = ({navigation}) => {
       email: user.email,
       password: user.password,
     });
-    const [{erro, resultado, id, nome}] = response.data;
+    const [{erro, resultado, id, nome, email}] = response.data;
     if (erro === 0) {
-      dispatch(loggin({...user, id, nome}));
+      dispatch(loggin({...user, id, nome, email}));
       navigation.navigate('Home');
     } else {
       Alert.alert(`${resultado}`, '');
