@@ -10,6 +10,7 @@ export const Container = styled.View`
 export const InputUser = styled.TextInput`
   height: 40px;
   margin: 10px;
+  color: #000
   border-color: #999;
   width: 80%;
   border-radius: 4px;
@@ -19,6 +20,7 @@ export const InputUser = styled.TextInput`
 
 export const InputPassword = styled.TextInput`
   height: 40px;
+  color: #000;
   width: 80%;
   border-color: #999;
   border-radius: 4px;

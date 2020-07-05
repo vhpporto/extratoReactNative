@@ -28,6 +28,7 @@ export const Title = styled.Text`
 
 export const InputDescription = styled.TextInput`
   align-self: center;
+  color: #000;
   margin-top: 20px;
   height: 40px;
   width: 90%;
@@ -50,6 +51,7 @@ export const FormContainer = styled.View`
 
 export const InputValue = styled(TextInputMask)`
   align-self: center;
+  color: #000;
   margin-top: 20px;
   height: 40px;
   width: 90%;
