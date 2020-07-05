@@ -195,3 +195,33 @@ export const TextEmpty = styled.Text`
   padding: 20px;
   color: #666;
 `;
+
+export const InputDate = styled.TouchableHighlight`
+  height: 50px;
+  width: 90%;
+  border-width: 0.5px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+`;
+
+export const TextDatePeriodo = styled.Text`
+  color: #666;
+  font-size: 17px;
+`;
+
+export const ButtonFilterPeriodo = styled.TouchableOpacity`
+  height: 40px;
+  width: 70%;
+  align-self: center;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: #389eff;
+`;
+
+export const TextButtonFilter = styled.Text`
+  color: #fff;
+  font-weight: 700;
+`;

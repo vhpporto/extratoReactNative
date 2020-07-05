@@ -43,6 +43,10 @@ import {
   ValueModal,
   EmptyList,
   TextEmpty,
+  InputDate,
+  TextDatePeriodo,
+  ButtonFilterPeriodo,
+  TextButtonFilter,
 } from './styles';
 Icon.loadFont();
 const diaAtual = moment().format('LLLL');
@@ -50,6 +54,7 @@ const diaAtualFormatado = diaAtual.split('às');
 
 const Home = ({navigation}) => {
   const userInfo = useSelector(state => state.user);
+  const [calendarVisible, setCalendarVisible] = useState(false);
   const [item, setItem] = useState({});
   const modalizeRefPeriodo = useRef(null);
   const modalizeRef = useRef(null);
@@ -65,6 +70,11 @@ const Home = ({navigation}) => {
   const onOpen = item => {
     setItem(item);
     modalizeRef.current?.open();
+  };
+
+  const onOpenPeriodo = item => {
+    setItem(item);
+    modalizeRefPeriodo.current?.open();
   };
 
   useEffect(() => {
@@ -232,6 +242,31 @@ const Home = ({navigation}) => {
         <DescModal>{moment(item.Data_Lancamento).format('L')}</DescModal>
         <DescModal>{item.Descricao}</DescModal>
         <ValueModal>R$ {item.Valor}</ValueModal>
+      </Modalize>
+      <Modalize
+        modalStyle={
+          {
+            // alignItems: 'center',
+          }
+        }
+        childrenStyle={{
+          width: '90%',
+          marginTop: 30,
+          alignSelf: 'center',
+          padding: 20,
+          // alignItems: 'center',
+        }}
+        ref={modalizeRefPeriodo}
+        snapPoint={Dimensions.get('window').height / 2}>
+        <InputDate>
+          <TextDatePeriodo>{moment().format('L')}</TextDatePeriodo>
+        </InputDate>
+        <InputDate>
+          <TextDatePeriodo>{moment().format('L')}</TextDatePeriodo>
+        </InputDate>
+        <ButtonFilterPeriodo>
+          <TextButtonFilter>Filtrar</TextButtonFilter>
+        </ButtonFilterPeriodo>
       </Modalize>
     </Container>
   );
