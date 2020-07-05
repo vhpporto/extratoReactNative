@@ -41,15 +41,18 @@ import {
   TitleModal,
   DescModal,
   ValueModal,
+  EmptyList,
+  TextEmpty,
 } from './styles';
 Icon.loadFont();
 const diaAtual = moment().format('LLLL');
 const diaAtualFormatado = diaAtual.split('às');
 
 const Home = ({navigation}) => {
-  const [item, setItem] = useState({});
-  const modalizeRef = useRef(null);
   const userInfo = useSelector(state => state.user);
+  const [item, setItem] = useState({});
+  const modalizeRefPeriodo = useRef(null);
+  const modalizeRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [extrato, setExtrato] = useState(null);
   const [saldoExtrato, setSaldoExtrato] = useState('0.00');
@@ -81,6 +84,15 @@ const Home = ({navigation}) => {
   function handlePressPeriodo() {
     setButtonMes(false);
     setButtonPeriodo(true);
+    modalizeRefPeriodo.current?.open();
+  }
+
+  function emptyList() {
+    return (
+      <EmptyList>
+        <TextEmpty>Sem lançamentos no período...</TextEmpty>
+      </EmptyList>
+    );
   }
 
   async function removeMovimentacao(id, movimentacao) {
@@ -88,9 +100,8 @@ const Home = ({navigation}) => {
     const [{erro, resultado}] = response.data;
     if (erro === 0) {
       getExtrato();
-    } else {
-      Alert.alert(`${resultado}`);
     }
+    Alert.alert(`${resultado}`);
   }
 
   async function getExtrato() {
@@ -98,6 +109,7 @@ const Home = ({navigation}) => {
       id: userInfo.id,
     });
     const {data} = response;
+    console.log(data);
 
     if (data.length < 1) {
       setExtrato(null);
@@ -123,7 +135,6 @@ const Home = ({navigation}) => {
   return (
     <Container>
       <StatusBar barStyle="light-content" />
-
       <LinearGradient
         start={{x: 1, y: 0}}
         end={{x: 1, y: 1}}
@@ -152,6 +163,7 @@ const Home = ({navigation}) => {
 
       <FlatList
         data={extrato}
+        ListEmptyComponent={emptyList}
         keyExtractor={(item, index) => String(index)}
         renderItem={({item}) => {
           return (
@@ -216,7 +228,7 @@ const Home = ({navigation}) => {
         }}
         ref={modalizeRef}
         snapPoint={Dimensions.get('window').height / 2}>
-        <TitleModal>Movimentação</TitleModal>
+        <TitleModal>Detalhes</TitleModal>
         <DescModal>{moment(item.Data_Lancamento).format('L')}</DescModal>
         <DescModal>{item.Descricao}</DescModal>
         <ValueModal>R$ {item.Valor}</ValueModal>

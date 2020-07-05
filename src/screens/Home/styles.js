@@ -182,3 +182,16 @@ export const ValueModal = styled.Text`
     }
   }};
 `;
+
+export const EmptyList = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const TextEmpty = styled.Text`
+  margin-top: 30px;
+  font-size: 24px;
+  padding: 20px;
+  color: #666;
+`;
