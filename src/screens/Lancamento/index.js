@@ -67,6 +67,7 @@ class index extends Component {
       categorias: categorias,
       showPicker: false,
       favSport: null,
+      dateSelected: null,
     };
   }
 
@@ -180,8 +181,15 @@ class index extends Component {
                 animated={true}>
                 <ContainerModalCalendar>
                   <Calendar
+                    markedDates={this.state.dateSelected}
                     onDayPress={day =>
                       this.setState({
+                        dateSelected: {
+                          [day.dateString]: {
+                            selected: true,
+                            selectedColor: 'red',
+                          },
+                        },
                         calendarVisible: !this.state.calendarVisible,
                         data: moment(day.dateString).format('L'),
                       })

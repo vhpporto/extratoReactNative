@@ -16,11 +16,12 @@ import {
 import api from '../../services/api';
 import Modal from 'react-native-modal';
 import {useDispatch} from 'react-redux';
+import {RefreshControl} from 'react-native';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
+  const [password, setPassword] = useState();
   const [codigo, setCodigo] = useState(Array.from(4));
-
   const input1 = useRef();
   const input2 = useRef();
   const input3 = useRef();
@@ -34,14 +35,21 @@ const Login = ({navigation}) => {
   });
   const [modalVisible, setModalVisible] = useState(false);
 
-  function newPassword() {
-    for (const cod in codigo) {
-      console.log(cod);
-    }
-  }
+  const getFocusInput1 = () => {
+    input1.current.focus();
+  };
+  const getFocusInput2 = () => {
+    input2.current.focus();
+  };
+  const getFocusInput3 = () => {
+    input3.current.focus();
+  };
+  const getFocusInput4 = () => {
+    input4.current.focus();
+  };
 
   const esqueceuSenha = async () => {
-    const response = await api.post('http://18.228.30.132:3333/esqueceusenha', {
+    const response = await api.post('/esqueceusenha', {
       email: user.email,
     });
     const [{resultado, erro}] = response.data;
@@ -70,28 +78,55 @@ const Login = ({navigation}) => {
             <InputNumber
               textAlign={'center'}
               keyboardType="decimal-pad"
-              onChangeText={newPassword}
+              onChangeText={number => {
+                setPassword([...password, number]);
+                if (number) {
+                  getFocusInput2();
+                }
+              }}
               maxLength={1}
-              onKeyPress={() => input2.ref}
               ref={input1}
             />
             <InputNumber
               textAlign={'center'}
               keyboardType="decimal-pad"
               ref={input2}
-              onChangeText={newPassword}
+              onChangeText={number => {
+                setPassword([...password, number]);
+                if (number) {
+                  getFocusInput3();
+                } else {
+                  getFocusInput1();
+                }
+              }}
               maxLength={1}
             />
             <InputNumber
               textAlign={'center'}
               keyboardType="decimal-pad"
-              onChangeText={newPassword}
+              on
+              onChangeText={number => {
+                setPassword([...password, number]);
+                if (number) {
+                  getFocusInput4();
+                } else {
+                  getFocusInput2();
+                }
+              }}
+              ref={input3}
               maxLength={1}
             />
             <InputNumber
               textAlign={'center'}
               keyboardType="decimal-pad"
-              onChangeText={newPassword}
+              ref={input4}
+              onChangeText={number => {
+                setPassword([...password, number]);
+                if (!number) {
+                  getFocusInput3();
+                  console.log(password);
+                }
+              }}
               maxLength={1}
             />
           </View>
