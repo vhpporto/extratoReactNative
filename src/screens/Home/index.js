@@ -119,7 +119,6 @@ const Home = ({navigation}) => {
       id: userInfo.id,
     });
     const {data} = response;
-    console.log(data);
 
     if (data.length < 1) {
       setExtrato(null);
@@ -199,7 +198,7 @@ const Home = ({navigation}) => {
                     )
                   }>
                   <Description>{item.Descricao}</Description>
-                  <Date>{moment(item.Data_Lancamento).format('L')}</Date>
+                  <Date>{moment(item.Data_Lancamento).format('LL')}</Date>
                 </TouchableOpacity>
               </DescContainer>
               <ValueContainer>
@@ -239,7 +238,7 @@ const Home = ({navigation}) => {
         ref={modalizeRef}
         snapPoint={Dimensions.get('window').height / 2}>
         <TitleModal>Detalhes</TitleModal>
-        <DescModal>{moment(item.Data_Lancamento).format('L')}</DescModal>
+        <DescModal>{moment(item.Data_Lancamento).format('LL')}</DescModal>
         <DescModal>{item.Descricao}</DescModal>
         <ValueModal>R$ {item.Valor}</ValueModal>
       </Modalize>
@@ -257,6 +256,10 @@ const Home = ({navigation}) => {
           // alignItems: 'center',
         }}
         ref={modalizeRefPeriodo}
+        onOverlayPress={() => {
+          setButtonMes(true);
+          setButtonPeriodo(false);
+        }}
         snapPoint={Dimensions.get('window').height / 2}>
         <InputDate>
           <TextDatePeriodo>{moment().format('L')}</TextDatePeriodo>

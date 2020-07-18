@@ -172,7 +172,7 @@ export const ValueModal = styled.Text`
   margin-top: 50px;
   align-self: center;
   color: ${props => {
-    const number = props.children[1];
+    const number = parseFloat(props.children[1]);
     if (number > 0) {
       return 'green';
     } else if (number < 0) {
