@@ -76,6 +76,22 @@ class index extends Component {
     console.log(tipoMovimentacao);
   }
 
+  handleDate = day => {
+    this.setState({
+      dateSelected: {
+        [day.dateString]: {
+          selected: true,
+          selectedColor: 'red',
+        },
+      },
+
+      data: moment(day.dateString).format('L'),
+    });
+    setTimeout(() => {
+      this.setState({calendarVisible: !this.state.calendarVisible});
+    }, 200);
+  };
+
   formataValorReal = valor => {
     let valorFormatado = valor.replace(/\D+/g, '');
     let valor2 = valorFormatado.replace('R$', '');
@@ -182,21 +198,20 @@ class index extends Component {
                 <ContainerModalCalendar>
                   <Calendar
                     markedDates={this.state.dateSelected}
-                    onDayPress={day =>
-                      this.setState({
-                        dateSelected: {
-                          [day.dateString]: {
-                            selected: true,
-                            selectedColor: 'red',
-                          },
-                        },
-                        calendarVisible: !this.state.calendarVisible,
-                        data: moment(day.dateString).format('L'),
-                      })
-                    }
+                    onDayPress={day => this.handleDate(day)}
                   />
                 </ContainerModalCalendar>
               </CalendarModal>
+
+              <RNPickerSelect
+                placeholder={{
+                  label: 'Categoria',
+                }}
+                onValueChange={tipoCategoria => this.setState({tipoCategoria})}
+                items={categorias}
+                value={this.state.tipoCategoria}
+                style={pickerSelectStyles}
+              />
 
               <InputDescription
                 value={this.state.descricao}
@@ -234,22 +249,6 @@ class index extends Component {
               <ButtonSave onPress={() => this.insereMovimentacao()}>
                 <TextButtonSave>Salvar</TextButtonSave>
               </ButtonSave>
-
-              {/* <DateTimePicker
-                isVisible={this.state.calendarVisible}
-                headerTextIOS="Data de lançamento"
-                locale="pt-BR"
-                mode="date"
-                // onConfirm={(date) => console.log(date)}
-                onConfirm={date => {
-                  this.setState({
-                    data: moment(date).format('L'),
-                    calendarVisible: false,
-                  }),
-                    Keyboard.dismiss();
-                }}
-                onCancel={() => this.setState({calendarVisible: false})}
-              /> */}
             </FormContainer>
           </Container>
         </DismissKeyboard>

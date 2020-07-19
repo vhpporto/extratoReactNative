@@ -1,35 +1,31 @@
 const values = [
   {
-    label: 'Diversas',
+    label: 'Despesas Diversas',
     value: '1',
   },
   {
-    label: 'Mercado',
+    label: 'Cartão',
     value: '2',
   },
   {
-    label: 'Gasolina',
+    label: 'Alimentação',
     value: '3',
   },
   {
-    label: 'Cartão',
+    label: 'Automóvel',
     value: '4',
   },
   {
-    label: 'Carro',
+    label: 'Educação',
     value: '5',
   },
   {
-    label: 'Salário',
+    label: 'Casa',
     value: '6',
   },
   {
-    label: 'Casa',
+    label: 'Receitas Diversas',
     value: '7',
-  },
-  {
-    label: 'Faculdade',
-    value: '8',
   },
 ];
 

@@ -119,10 +119,12 @@ const Home = ({navigation}) => {
       id: userInfo.id,
     });
     const {data} = response;
+    console.log(data);
 
     if (data.length < 1) {
       setExtrato(null);
       setLoading(false);
+      setSaldoExtrato('0.00');
       return false;
     } else {
       const indexSaldo = data.length - 1;
